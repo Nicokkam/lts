@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import MainContainer from './containers/MainContainer';
 import NavBar from './components/NavBar/NavBar';
+import { createMuiTheme } from '@material-ui/core/styles';
+import purple from '@material-ui/core/colors/purple';
 
-import './App.css';
+
+const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
+  palette: {
+    primary: purple
+  }
+});
+
 
 
 class App extends Component {

@@ -42,7 +42,7 @@ class SimpleTabs extends React.Component {
     return (
       <div className={classes.root}>
         <AppBar style={{ backgroundColor: '#393840' }} position="static">
-          <Tabs  value={value} onChange={this.handleChange}>
+          <Tabs value={value} onChange={this.handleChange}>
             <Tab label="E " />
             <Tab label="D" />
             <Tab label="A" />
@@ -50,7 +50,7 @@ class SimpleTabs extends React.Component {
             <Tab label="T" />
           </Tabs>
         </AppBar>
-        {value === 0 && <TabContainer><Paper style={{height: '300px'}}>PAGINA 1</Paper></TabContainer>}
+        {value === 0 && <TabContainer><Paper style={{ height: '300px' }}>PAGINA 1</Paper></TabContainer>}
         {value === 1 && <TabContainer>TORQUIMETROS</TabContainer>}
         {value === 2 && <TabContainer>ROTEADORES</TabContainer>}
         {value === 3 && <TabContainer>ROTEADORES</TabContainer>}

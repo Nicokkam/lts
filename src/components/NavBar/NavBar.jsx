@@ -11,7 +11,6 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 
-
 export default class NavBar extends Component {
 
     state = {
@@ -34,7 +33,7 @@ export default class NavBar extends Component {
     render() {
         return (
             <div className="navbar-container">
-                <AppBar style={{ backgroundColor: '#393840' }} position="static">
+                <AppBar style={{background: 'black'}} position="static">
                     <Toolbar>
                         <IconButton onClick={this.handleDrawer} className="" color="inherit" aria-label="Menu">
                             <MenuIcon />
