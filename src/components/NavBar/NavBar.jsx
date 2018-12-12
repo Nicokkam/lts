@@ -33,7 +33,7 @@ export default class NavBar extends Component {
     render() {
         return (
             <div className="navbar-container">
-                <AppBar style={{background: 'black'}} position="static">
+                <AppBar style={{ background: '#3f51b5' }} position="static">
                     <Toolbar>
                         <IconButton onClick={this.handleDrawer} className="" color="inherit" aria-label="Menu">
                             <MenuIcon />
@@ -41,13 +41,13 @@ export default class NavBar extends Component {
                         <Typography variant="h6" color="inherit" className="">
                             LIVE TRUCK STANDARD
                         </Typography>
-                        <Button variant="contained" component="span" style={{color: 'white', background: '#39ce5e'}} >LOGIN</Button>
+                        <Button variant="contained" component="span" style={{ color: 'white', background: '#39ce5e' }} >LOGIN</Button>
                     </Toolbar>
                 </AppBar>
                 <SwipeableDrawer
                     variant="persistent"
                     anchor="left"
-                    open={this.state.open}       
+                    open={this.state.open}
                     onClose={this.handleClose}
                     onOpen={this.handleOpen}
                 >
@@ -82,8 +82,8 @@ export default class NavBar extends Component {
                             <ListItemText primary="AJUDA" />
                         </ListItem>
                         <Divider />
-                    </List>                    
-                    
+                    </List>
+
                     <button onClick={this.handleDrawer} >CLOSE</button> {/* EXIBIR UM ICONE DE SETA PARA VOLTAR */}
 
                 </SwipeableDrawer >
@@ -91,41 +91,3 @@ export default class NavBar extends Component {
         )
     }
 }
-
-        /*
-        
-        import React from 'react';
-        import PropTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
-                
-                import Button from '@material-ui/core/Button';
-                
-                
-                
-function ButtonAppBar(props) {
-  const {classes} = props;
-                return (
-    <div className={classes.root}>
-                    <AppBar position="static">
-                        <Toolbar>
-                            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                                <MenuIcon />
-                            </IconButton>
-                            <Typography variant="h6" color="inherit" className={classes.grow}>
-                                News
-          </Typography>
-                            <Button color="inherit">Login</Button>
-                        </Toolbar>
-                    </AppBar>
-                </div>
-                );
-              }
-              
-ButtonAppBar.propTypes = {
-                    classes: PropTypes.object.isRequired,
-              };
-              
-              export default withStyles(styles)(ButtonAppBar);
-              
-              
-*/
