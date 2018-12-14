@@ -5,6 +5,8 @@ import TorqueTool from '../..//models/TorqueTool';
 import AddressArea from '../..//models/AdressArea';
 import ProfinetConfig from '../..//models/ProfinetConfig';
 
+import  TorqueToolService  from '../../api/torquetools';
+
 const protocols = [
     { id: 1, name: 'Profinet' },
     { id: 2, name: 'Open Protocol' }
@@ -21,6 +23,8 @@ const models = [1, 2, 3, 4];
 
 export default class TorqueToolForm extends Component {
 
+    _torqueToolService = new TorqueToolService();
+
     state = {
         equipType: this.props.equipType,
         equipName: "",
@@ -29,7 +33,8 @@ export default class TorqueToolForm extends Component {
         profinetConfig: new ProfinetConfig()
     }
 
-    componentDidMount() {
+    componentDidMount() {        
+        const b = this._torqueToolService.get();        
         const torqueTool = this.state.torqueTool;
         torqueTool.protocol = this.state.equipType;
         this.setState({
@@ -45,7 +50,7 @@ export default class TorqueToolForm extends Component {
     }
 
     render() {
-        const { torqueTool, addressArea, profinetConfig } = this.state;                
+        const { torqueTool, addressArea, profinetConfig } = this.state;
         return (
             <div className="torquetool-form">
                 <TextField
@@ -158,8 +163,8 @@ export default class TorqueToolForm extends Component {
                     <MenuItem value={0}>NÃO</MenuItem>
                     <MenuItem value={1}>SIM</MenuItem>
                 </TextField>
-              
-                
+
+
                 <TextField
                     id="outlined-uncontrolled"
                     label="CONTROLADORA(SSB)"

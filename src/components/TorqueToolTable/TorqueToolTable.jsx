@@ -13,17 +13,12 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TorqueToolService from '../../api/torquetools';
 
-export default class TorqueToolTable extends Component {    
+export default class TorqueToolTable extends Component {
 
     columns = [
         'id', 'ssb', 'protocol', 'manufacturer', 'modelId', 'ethernetIPId', 'port', 'profinetIPId', 'profinetConfigId', 'description'
-        ,'collectResults', 'hasController', 'controllerSSB', 'toolSerial', 'firmware', 'isWireless'
-    ]
-
-    constructor(props) {
-        super(props);
-        this._torqueToolsService =  new TorqueToolService();        
-    }
+        , 'collectResults', 'hasController', 'controllerSSB', 'toolSerial', 'firmware', 'isWireless'
+    ]    
 
     state = {
         equipType: this.props.equipType
@@ -31,7 +26,7 @@ export default class TorqueToolTable extends Component {
 
     componentDidMount() {
         // Fazer a requisição dos equipamentos aqui
-        
+
     }
 
     render() {
