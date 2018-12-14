@@ -11,6 +11,16 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 
+const menus = [
+    'DASHBOARD',
+    'POSTOS',
+    'EQUIPAMENTOS',
+    'RELATÓRIOS',
+    'ACESSO',
+    'BUSCAR LT',
+    'ORGANIZAÇÃO',
+    'AJUDA'
+]
 export default class NavBar extends Component {
 
     state = {
@@ -54,37 +64,20 @@ export default class NavBar extends Component {
                     {/* Listar topicos importantes */}
                     {/* DIVIDIR AS ABAS ENTRE BUS E TRUCK */}
                     <List>
-                        <ListItem button>
-                            <ListItemText primary="DASHBOARD" />
-                        </ListItem>
-                        <Divider />
-                        <ListItem button>
-                            <ListItemText primary="POSTOS" />
-                        </ListItem>
-                        <Divider />
-                        <ListItem button>
-                            <ListItemText primary="EQUIPAMENTOS" />
-                        </ListItem>
-                        <Divider />
-                        <ListItem button>
-                            <ListItemText primary="RELATÓRIOS" />
-                        </ListItem>
-                        <Divider />
-                        <ListItem button>
-                            <ListItemText primary="ACESSO" />
-                        </ListItem>
-                        <Divider />
-                        <ListItem button>
-                            <ListItemText primary="ORGANIZAÇÃO" />
-                        </ListItem>
-                        <Divider />
-                        <ListItem button>
-                            <ListItemText primary="AJUDA" />
-                        </ListItem>
-                        <Divider />
-                    </List>
-
-                    <button onClick={this.handleDrawer} >CLOSE</button> {/* EXIBIR UM ICONE DE SETA PARA VOLTAR */}
+                        {
+                            menus.map((m, i) => {
+                                return (
+                                    <React.Fragment key={i}>
+                                        <ListItem button>
+                                            <ListItemText primary={m} />
+                                        </ListItem>
+                                        <Divider />
+                                    </React.Fragment>
+                                )
+                            })
+                        }
+                    </List>           
+                    <Button variant="contained"  onClick={this.handleDrawer} >FECHAR </Button>                            
 
                 </SwipeableDrawer >
             </div>

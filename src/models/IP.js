@@ -1,6 +1,6 @@
 export default class IP {
     id;
-    ethernetAddress;
+    ip;
     macAddress;
-    inUse;
+    hasEquipment;
 }

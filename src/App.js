@@ -22,7 +22,7 @@ class App extends Component {
     return (
       <div className="main-container">
         <NavBar />        
-        <StationContainer />
+        <StationContainer />        
         {/* <MainContainer /> */}
       </div>
     );

@@ -1,3 +1,5 @@
+import ProfinetConfig from "./ProfinetConfig";
+
 export default class TorqueTool {
     id;
     ssb;
@@ -7,7 +9,7 @@ export default class TorqueTool {
     ethernetIPId = 0;
     port = 4545;
     profinetIPId = 0;
-    profinetConfigId;
+    profinetConfigId = 0;
     description;
     collectResults = 0;
     controllerSSB;

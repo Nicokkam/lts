@@ -1,23 +1,25 @@
+import AddressArea from "./AdressArea";
+
 export default class ProfinetConfig {
-    Id = 0;
-    ProfinetId;
-    ProfinetName;
-    HardwareDeviceId;
-    HardwareId;
-    WR_IDENTIFIER;
-    WR_ABORT_JOB;
-    WR_RESET_IDENTIFIER;
-    WR_JOB_OFF;
-    WR_INCREMENT;
-    WR_DECREMENT;
-    WR_BY_PASS_PSET;
-    RD_BATCH_REMAINING;
-    RD_BATCH_COMPLETED;
-    RD_JOB_OK;
-    RD_JOB_RUNNING;
-    RD_IDENTIFIED;
-    RD_ABORTED;
-    RD_JOB_OFF;
-    RD_TIMESTAMP;
-    RD_JOB_ID;
+    id;
+    profinetId = 0;
+    profinetName = "";
+    hardwareDeviceId = 0;
+    hardwareId = 0;
+    WR_IDENTIFIER = new AddressArea();
+    WR_ABORT_JOB = new AddressArea();
+    WR_RESET_IDENTIFIER = new AddressArea();
+    WR_JOB_OFF = new AddressArea();
+    WR_INCREMENT = new AddressArea();
+    WR_DECREMENT = new AddressArea();
+    WR_BY_PASS_PSET = new AddressArea();
+    RD_BATCH_REMAINING = new AddressArea();
+    RD_BATCH_COMPLETED = new AddressArea();
+    RD_JOB_OK = new AddressArea();
+    RD_JOB_RUNNING = new AddressArea();
+    RD_IDENTIFIED = new AddressArea();
+    RD_ABORTED = new AddressArea();
+    RD_JOB_OFF = new AddressArea();
+    RD_TIMESTAMP = new AddressArea();
+    RD_JOB_ID = new AddressArea();
 }

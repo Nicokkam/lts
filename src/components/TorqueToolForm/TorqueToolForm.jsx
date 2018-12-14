@@ -1,16 +1,15 @@
+// TODO: Buscar IPs disponíveis
+// TODO: Criar botão para abrir dialog de configuração do Profinet
+
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
-import { MenuItem } from '@material-ui/core';
+import { Button, MenuItem } from '@material-ui/core';
 import TorqueTool from '../..//models/TorqueTool';
 import AddressArea from '../..//models/AdressArea';
 import ProfinetConfig from '../..//models/ProfinetConfig';
 
-import  TorqueToolService  from '../../api/torquetools';
-
-const protocols = [
-    { id: 1, name: 'Profinet' },
-    { id: 2, name: 'Open Protocol' }
-]
+import TorqueToolService from '../../api/torquetools';
+import ProfinetConfigForm from '../ProfinetConfigForm/ProfinetConfigForm';
 
 const manufac = [
     { id: 1, name: 'Atlas Copco' },
@@ -29,17 +28,13 @@ export default class TorqueToolForm extends Component {
         equipType: this.props.equipType,
         equipName: "",
         torqueTool: new TorqueTool(),
-        addressArea: new AddressArea(),
         profinetConfig: new ProfinetConfig()
     }
 
-    componentDidMount() {        
-        const b = this._torqueToolService.get();        
+    componentDidMount() {
         const torqueTool = this.state.torqueTool;
         torqueTool.protocol = this.state.equipType;
-        this.setState({
-            torqueTool
-        })
+        this.setState({ torqueTool });
     }
 
     handleChange = (e) => {
@@ -47,10 +42,16 @@ export default class TorqueToolForm extends Component {
         const { torqueTool } = this.state;
         torqueTool[name] = value;
         this.setState({ torqueTool });
+        console.log(torqueTool);
+    }
+
+    save = () => {
+        this._torqueToolService.create(this.state.torqueTool)
+            .then(data => console.log(data));
     }
 
     render() {
-        const { torqueTool, addressArea, profinetConfig } = this.state;
+        const { torqueTool, profinetConfig } = this.state;
         return (
             <div className="torquetool-form">
                 <TextField
@@ -61,7 +62,8 @@ export default class TorqueToolForm extends Component {
                     variant="outlined"
                     onChange={this.handleChange}
                 />
-                <TextField
+
+                {/* <TextField
                     // select
                     disabled
                     name="protocol"
@@ -71,9 +73,9 @@ export default class TorqueToolForm extends Component {
                     margin="normal"
                     variant="outlined"
                     onChange={this.handleChange}
-                >
-                    {/* {protocols.map((p, i) => <MenuItem key={i} value={p.id}>{p.name}</MenuItem>)} */}
-                </TextField>
+                > */}
+                {/* {protocols.map((p, i) => <MenuItem key={i} value={p.id}>{p.name}</MenuItem>)} */}
+                {/* </TextField> */}
                 <TextField
                     select
                     name="manufacturerId"
@@ -120,7 +122,7 @@ export default class TorqueToolForm extends Component {
                     onChange={this.handleChange}
                 />
                 <TextField
-                    disabled={torqueTool.protocol !== 0}
+                    disabled={torqueTool.protocol !== 1}
                     id="outlined-uncontrolled"
                     label="IP PROFINET"
                     defaultValue="192.27."
@@ -211,6 +213,11 @@ export default class TorqueToolForm extends Component {
                     <MenuItem value={0}>NÃO</MenuItem>
                     <MenuItem value={1}>SIM</MenuItem>
                 </TextField>
+                <Button variant="contained" color="primary" onClick={this.save} >SALVAR</Button>
+
+                <div>
+                    <ProfinetConfigForm />
+                </div>
             </div>
         )
     }

@@ -3,14 +3,14 @@ import CONFIG from '../config';
 
 export default class TorqueToolService {
 
+    _url = CONFIG.apiServer + '/api/ip/';
+
     async get() {
-        const a = await axios.get('https://jsonplaceholder.typicode.com/todos/')
-        // axios.get('http://10.8.66.81/instances')
-        return a.data;        
+        return await axios.get(this._url).then(data => data.data);
     }
 
     async getById(id) {
-        
+        return await axios.get(this._url + id).then(data => data.data);
     }
 
     async create(ip) {
@@ -22,7 +22,7 @@ export default class TorqueToolService {
     }
 
     async delete(id) {
-        
+
     }
 
 }

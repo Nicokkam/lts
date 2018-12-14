@@ -3,6 +3,8 @@ import CONFIG from '../config';
 
 export default class TorqueToolService {
 
+    _url = CONFIG.apiServer;
+
     async get() {
         const a = await axios.get('https://jsonplaceholder.typicode.com/todos/')
         // axios.get('http://10.8.66.81/instances')
@@ -17,7 +19,7 @@ export default class TorqueToolService {
 
     }
 
-    async update(id, torqueTool) {
+    async update(torqueTool) {
 
     }
 

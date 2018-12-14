@@ -26,7 +26,6 @@ export default class TorqueToolTable extends Component {
 
     componentDidMount() {
         // Fazer a requisição dos equipamentos aqui
-
     }
 
     render() {
