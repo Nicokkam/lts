@@ -9,7 +9,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import ArrowBackSharp from '@material-ui/icons/ArrowBackSharp';
 import Typography from '@material-ui/core/Typography';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+import StationContainer from '../../containers/StationContainer';
 
 const menus = [
     'DASHBOARD',
@@ -63,6 +67,7 @@ export default class NavBar extends Component {
                 >
                     {/* Listar topicos importantes */}
                     {/* DIVIDIR AS ABAS ENTRE BUS E TRUCK */}
+
                     <List>
                         {
                             menus.map((m, i) => {
@@ -76,10 +81,12 @@ export default class NavBar extends Component {
                                 )
                             })
                         }
-                    </List>           
-                    <Button variant="contained"  onClick={this.handleDrawer} >FECHAR </Button>                            
-                        <div>{process.env.REACT_APP_SERVER}</div>
-                        <div>tesssste</div>
+                    </List>
+
+                    <Button variant="contained" onClick={this.handleDrawer} >FECHAR </Button>
+
+                    <ArrowBackSharp />
+
                 </SwipeableDrawer >
             </div>
         )

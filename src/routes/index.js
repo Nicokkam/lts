@@ -8,7 +8,6 @@ import LocationOn from "@material-ui/icons/LocationOn";
 import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
 // core components/views
-import DashboardPage from "views/Dashboard/Dashboard.jsx";
 import UserProfile from "views/UserProfile/UserProfile.jsx";
 import TableList from "views/TableList/TableList.jsx";
 import Typography from "views/Typography/Typography.jsx";
@@ -17,62 +16,70 @@ import Maps from "views/Maps/Maps.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
 
+//views
+import DashboardContainer from '../containers/DashboardContainer';
+
+
+const menus = [
+  'DASHBOARD',
+  'POSTOS',
+  'EQUIPAMENTOS',
+  'RELATÓRIOS',
+  'ACESSO',
+  'BUSCAR LT',
+  'ORGANIZAÇÃO',
+  'AJUDA'
+]
+
 const dashboardRoutes = [
   {
     path: "/dashboard",
-    sidebarName: "Dashboard",
-    navbarName: "Material Dashboard",
+    sidebarName: "DASHBOARD",
+    navbarName: "DASHBOARD",
     icon: Dashboard,
-    component: DashboardPage
+    component: DashboardContainer
   },
   {
-    path: "/user",
-    sidebarName: "User Profile",
-    navbarName: "Profile",
+    path: "/postos",
+    sidebarName: "POSTOS",
+    navbarName: "POSTOS",
     icon: Person,
     component: UserProfile
   },
   {
-    path: "/table",
+    path: "/relatorios",
     sidebarName: "Table List",
     navbarName: "Table List",
     icon: "content_paste",
     component: TableList
   },
   {
-    path: "/typography",
+    path: "/acesso",
     sidebarName: "Typography",
     navbarName: "Typography",
     icon: LibraryBooks,
     component: Typography
   },
   {
-    path: "/icons",
+    path: "/buscaLT",
     sidebarName: "Icons",
     navbarName: "Icons",
     icon: BubbleChart,
     component: Icons
   },
   {
-    path: "/maps",
+    path: "/organizacao",
     sidebarName: "Maps",
     navbarName: "Map",
     icon: LocationOn,
     component: Maps
   },
   {
-    path: "/notifications",
+    path: "/ajuda",
     sidebarName: "Notifications",
     navbarName: "Notifications",
     icon: Notifications,
     component: NotificationsPage
-  },
-  {
-    path: "/upgrade-to-pro",
-    sidebarName: "Upgrade To PRO",
-    navbarName: "Upgrade To PRO",
-    icon: Unarchive,
-    component: UpgradeToPro
   },
   { redirect: true, path: "/", to: "/dashboard", navbarName: "Redirect" }
 ];
