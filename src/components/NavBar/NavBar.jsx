@@ -78,7 +78,8 @@ export default class NavBar extends Component {
                         }
                     </List>           
                     <Button variant="contained"  onClick={this.handleDrawer} >FECHAR </Button>                            
-
+                        <div>{process.env.REACT_APP_SERVER}</div>
+                        <div>tesssste</div>
                 </SwipeableDrawer >
             </div>
         )

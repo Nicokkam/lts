@@ -1,6 +1,7 @@
 const CONFIG = {
     socketServer: '',
-    apiServer: ''
+    apiServer: '',
+    devServer: 'http://localhost:'
 }
 
 export default CONFIG;
