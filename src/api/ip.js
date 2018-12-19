@@ -1,16 +1,18 @@
 import axios from 'axios';
-import CONFIG from '../config';
 
-export default class TorqueToolService {
+export default class IPService {
 
-    _url = CONFIG.apiServer + '/api/ip/';
+    _url = process.env.REACT_APP_SERVER + '/api/ip';
 
-    async get() {
-        return await axios.get(this._url).then(data => data.data);
+    async get(...params) {
+        let queryString = "?";
+        params.map(p => queryString += Object.keys(p) + '=' + Object.values(p) + '&');
+        queryString = queryString.slice(0,-1);
+        return await axios.get(this._url + queryString).then(data => data.data);
     }
 
     async getById(id) {
-        return await axios.get(this._url + id).then(data => data.data);
+        return await axios.get(this._url + '/' + id).then(data => data.data);
     }
 
     async create(ip) {

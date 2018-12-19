@@ -6,13 +6,13 @@ import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import CssBaseline from '@material-ui/core/CssBaseline';
+
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -21,10 +21,6 @@ import { Route, Switch, Link } from "react-router-dom";
 
 
 import routes from './routes';
-
-import DashboardContainer from './containers/DashboardContainer';
-import EquipmentsContainer from './containers/EquipmentsContainer';
-import StationContainer from './containers/StationContainer';
 
 
 const drawerWidth = 240;
@@ -108,17 +104,18 @@ class App extends React.Component {
   };
 
   render() {
+    
     const { classes, theme } = this.props;
 
     return (
 
       <div className={classes.root}>
 
-        <CssBaseline />
+        
         <AppBar
           position="fixed"
           className={classNames(classes.appBar, {
-            [classes.appBarShift]: this.state.open,
+            [classes.appBarShift]: this.state.open 
           })}
         >
           <Toolbar disableGutters={!this.state.open}>
@@ -137,6 +134,7 @@ class App extends React.Component {
             </Typography>
           </Toolbar>
         </AppBar>
+
         <Drawer
           variant="permanent"
           className={classNames(classes.drawer, {
@@ -153,7 +151,7 @@ class App extends React.Component {
         >
           <div className={classes.toolbar}>
             <IconButton onClick={this.handleDrawerClose}>
-              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+               <ChevronLeftIcon />
             </IconButton>
           </div>
           <Divider />
@@ -178,21 +176,21 @@ class App extends React.Component {
               })
             }
           </List>
-          {/* </Router> */}
 
         </Drawer>
 
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          
+
           {/* TODO: ALTERAR PARA MAPEAMENTO DAS ROTAS */}
           <Switch>
-            <Route exact path='/dashboard' component={DashboardContainer}></Route>
-            <Route exact path='/postos' component={StationContainer}></Route>
-            <Route exact path='/equipmentos' component={EquipmentsContainer}></Route>
+            {
+              routes.map((r, i) => (<Route key={i} exact path={r.path} component={r.component}></Route>))
+            }
           </Switch>
 
         </main>
+
       </div>
 
 

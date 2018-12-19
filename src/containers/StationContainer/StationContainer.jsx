@@ -1,12 +1,15 @@
+
+
 import React, { Component } from 'react';
 // import { AppBar, Tabs, Tab, Paper } from '@material-ui/core';
 
-import { Button, TextField, MenuItem, Paper } from '@material-ui/core';
+import { Button, TextField, MenuItem, Paper, Tab, Tabs, AppBar } from '@material-ui/core';
 
 import TorqueToolTable from '../../components/TorqueToolTable/TorqueToolTable';
 import TorqueToolForm from '../../components/TorqueToolForm/TorqueToolForm';
 
-import  './StationContainer.css';
+import './StationContainer.css';
+import WorkplaceService from '../../api/workplace';
 
 const equipTypes = [
     { id: 1, name: 'Profinet', component: TorqueToolTable },
@@ -22,10 +25,13 @@ const equipTypes = [
 
 export default class StationContainer extends Component {
 
+    a = new WorkplaceService();
+
     state = {
         selectedType: 1,
         value: 0,
-        componentRender: <TorqueToolTable />
+        componentRender: <TorqueToolTable />,
+        selectedTab: 0
     }
 
     handleTableChange = (e) => {
@@ -34,38 +40,62 @@ export default class StationContainer extends Component {
         })
     }
 
+    handleTabChange = (e, value) => {
+        this.setState({ selectedTab: value })
+    }
+
+    componentDidMount() {
+        this.a.getByParameter().then(a => console.log(a))
+    }
+
 
     render() {
         const { selectedType } = this.state;
         return (
-            <div className="station-container">                
-                <Paper>
-                <Button size="large" variant="contained" color="primary">EQUIPAMENTOS</Button>
-                <Button size="large" variant="contained" color="primary">POSTOS</Button>
-                    <TextField
-                        select
-                        style={{width: '200px'}}
-                        name="equipType"
-                        id="outlined-equipType"
-                        label="TIPO DE EQUIPAMENTO"
-                        value={selectedType}
-                        margin="dense"
-                        variant="outlined"
-                        onChange={this.handleTableChange} >
-                        {equipTypes.map((e, i) => {
-                            return (
-                                <MenuItem key={i} value={e.id}>{e.id} - {e.name}</MenuItem>
-                            );
-                        }) }
-                    </TextField>
-                {/* {selectedType === 0 && <TorqueToolTable equipType={selectedType} />} */}
-                {/* {selectedType === 1 && <TorqueToolTable equipType={selectedType} />} */}
-                {selectedType === 1 && <TorqueToolForm equipType={selectedType} />}
-                {selectedType === 2 && <TorqueToolForm equipType={selectedType} />}
-                {/* FAZER UM CASE DE ACORDO COM O EQUIPTYPE SELECIONADO */}
-                {/* CRIAR UMA VIEW ESPECIFICA PARA CADA TIPO DE TABELA */}
-                </Paper>
-            </div >
+
+            <Paper>
+                <AppBar position="static" color="default">
+                    <Tabs
+                        value={this.state.selectedTab}
+                        indicatorColor="primary"
+                        textColor="primary"
+                        fullWidth
+                        onChange={this.handleTabChange}
+                    >
+                        <Tab value={0} label="Active" />                        
+                        <Tab value={1} label="Active" />
+                    </Tabs>
+                </AppBar>                
+            </Paper>
+
+            // <div>                
+            //     <Paper>
+            //     {/* <Button size="large" variant="contained" color="primary">EQUIPAMENTOS</Button>
+            //     <Button size="large" variant="contained" color="primary">POSTOS</Button> */}
+            //         <TextField
+            //             select
+            //             style={{width: '200px'}}
+            //             name="equipType"
+            //             id="outlined-equipType"
+            //             label="TIPO DE EQUIPAMENTO"
+            //             value={selectedType}
+            //             margin="dense"
+            //             variant="outlined"
+            //             onChange={this.handleTableChange} >
+            //             {equipTypes.map((e, i) => {
+            //                 return (
+            //                     <MenuItem key={i} value={e.id}>{e.id} - {e.name}</MenuItem>
+            //                 );
+            //             }) }
+            //         </TextField>
+            //     {/* {selectedType === 0 && <TorqueToolTable equipType={selectedType} />} */}
+            //     {/* {selectedType === 1 && <TorqueToolTable equipType={selectedType} />} */}
+            //     {selectedType === 1 && <TorqueToolForm equipType={selectedType} />}
+            //     {selectedType === 2 && <TorqueToolForm equipType={selectedType} />}
+            //     {/* FAZER UM CASE DE ACORDO COM O EQUIPTYPE SELECIONADO */}
+            //     {/* CRIAR UMA VIEW ESPECIFICA PARA CADA TIPO DE TABELA */}
+            //     </Paper>
+            // </div >
         )
     }
 }
