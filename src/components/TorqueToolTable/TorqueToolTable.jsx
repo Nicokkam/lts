@@ -1,8 +1,6 @@
-// TODO
-
-// Validar se há ID para as configurações de: Ethernet, ProfinetIP, e Profinet Hardware
-// Para configuração de IP, exibir apenas o IP do equipamento
-// Para configuração profinet, exibir um botão que abra um diolog exibindo as demais configurações
+// TODO: Validar se há ID para as configurações de: Ethernet, ProfinetIP, e Profinet Hardware
+// TODO: Para configuração de IP, exibir apenas o IP do equipamento
+// TODO: Para configuração profinet, exibir um botão que abra um diolog exibindo as demais configurações
 
 
 import React, { Component } from 'react';
@@ -14,6 +12,8 @@ import TableRow from '@material-ui/core/TableRow';
 import TorqueToolService from '../../api/torquetools';
 
 export default class TorqueToolTable extends Component {
+
+    _torqueToolService = new TorqueToolService();
 
     columns = [
         'id', 'ssb', 'protocol', 'manufacturer', 'modelId', 'ethernetIPId', 'port', 'profinetIPId', 'profinetConfigId', 'description'

@@ -1,4 +1,4 @@
-import ProfinetConfig from "./ProfinetConfig";
+// import ProfinetConfig from "./ProfinetConfig";
 
 export default class TorqueTool {
     id;
@@ -15,5 +15,7 @@ export default class TorqueTool {
     controllerSSB;
     toolSerial;
     firmware;
-    isWireless = 0;
+    isWireless = 0;    
 }
+
+

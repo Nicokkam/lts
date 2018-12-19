@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Button, MenuItem } from '@material-ui/core';
 import TorqueTool from '../..//models/TorqueTool';
-import AddressArea from '../..//models/AdressArea';
 import ProfinetConfig from '../..//models/ProfinetConfig';
 
 import TorqueToolService from '../../api/torquetools';
@@ -51,7 +50,7 @@ export default class TorqueToolForm extends Component {
     }
 
     render() {
-        const { torqueTool, profinetConfig } = this.state;
+        const { torqueTool } = this.state;
         return (
             <div className="torquetool-form">
                 <TextField

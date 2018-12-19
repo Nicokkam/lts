@@ -5,7 +5,7 @@
 
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
-import { MenuItem } from '@material-ui/core';
+// import { MenuItem } from '@material-ui/core';
 import TorqueTool from '../..//models/TorqueTool';
 import AddressArea from '../..//models/AdressArea';
 import ProfinetConfig from '../..//models/ProfinetConfig';
@@ -35,8 +35,11 @@ const byteAreas = [
 export default class ProfinetConfigForm extends Component {
 
 
+
     state = {
-        profinetConfig: new ProfinetConfig()
+        profinetConfig: new ProfinetConfig(),
+        ad: new AddressArea(),
+        tt: new TorqueTool()
     }
 
     handleChange = (e) => {

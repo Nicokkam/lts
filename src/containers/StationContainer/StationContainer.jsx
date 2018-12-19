@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 // import { AppBar, Tabs, Tab, Paper } from '@material-ui/core';
+
 import { Button, TextField, MenuItem, Paper } from '@material-ui/core';
 
 import TorqueToolTable from '../../components/TorqueToolTable/TorqueToolTable';
 import TorqueToolForm from '../../components/TorqueToolForm/TorqueToolForm';
+
+import  './StationContainer.css';
 
 const equipTypes = [
     { id: 1, name: 'Profinet', component: TorqueToolTable },
@@ -12,10 +15,10 @@ const equipTypes = [
     { id: 4, component: TorqueToolTable }
 ]
 
-const protocols = [
-    { id: 1, name: 'Profinet' },
-    { id: 2, name: 'Open Protocol' }
-]
+// const protocols = [
+//     { id: 1, name: 'Profinet' },
+//     { id: 2, name: 'Open Protocol' }
+// ]
 
 export default class StationContainer extends Component {
 
@@ -35,10 +38,10 @@ export default class StationContainer extends Component {
     render() {
         const { selectedType } = this.state;
         return (
-            <div className="station-container">
+            <div className="station-container">                
+                <Paper>
                 <Button size="large" variant="contained" color="primary">EQUIPAMENTOS</Button>
                 <Button size="large" variant="contained" color="primary">POSTOS</Button>
-                <Paper>
                     <TextField
                         select
                         style={{width: '200px'}}

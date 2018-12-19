@@ -18,6 +18,7 @@ import StationContainer from '../../containers/StationContainer';
 const menus = [
     'DASHBOARD',
     'POSTOS',
+    'FERRAMENTAS DO POSTO',
     'EQUIPAMENTOS',
     'RELATÓRIOS',
     'ACESSO',

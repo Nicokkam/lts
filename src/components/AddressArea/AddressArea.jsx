@@ -2,8 +2,8 @@
 // TODO: Prever DBS e Bytes proibidos
 
 import React, { Component } from 'react';
-import { Paper, TextField, MenuItem } from '@material-ui/core';
-import AddressArea from '../../models/AdressArea';
+import { Paper, TextField } from '@material-ui/core';
+// import AddressArea from '../../models/AdressArea';
 
 const areas = [
     { id: 1, name: 'INPUT', value: '81' },
@@ -12,8 +12,7 @@ const areas = [
     { id: 4, name: 'DB', value: '84' },
 ]
 
-
-
+areas.push()
 
 export default class AddressAreaForm extends Component {
 
