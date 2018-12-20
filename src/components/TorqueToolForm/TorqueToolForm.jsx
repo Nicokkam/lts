@@ -9,7 +9,7 @@ import {
 
 } from '@material-ui/core';
 import TorqueTool from '../..//models/TorqueTool';
-import ProfinetConfig from '../..//models/ProfinetConfig';
+// import ProfinetConfig from '../..//models/ProfinetConfig';
 
 import TorqueToolService from '../../api/torquetools';
 import ProfinetConfigDialog from '../ProfinetConfigDialog/ProfinetConfigDialog';
@@ -36,7 +36,15 @@ const styles = {
         justifyContent: 'space-between',
         width: '70%',
         margin: 'auto',
-        marginTop: '1.5%'
+        marginTop: '1.5%',        
+    },
+    formRowButton: {
+        display: 'flex',
+        width: '100%',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        marginTop: '2%',
+        marginBottom: '2%'
 
     },
     hidden: {
@@ -45,23 +53,25 @@ const styles = {
 };
 class TorqueToolForm extends Component {
 
-    _torqueToolService = new TorqueToolService();
+    _torqueToolService;
 
     state = {
         equipType: this.props.equipType,
         equipName: "",
         torqueTool: new TorqueTool(),
-        profinetConfig: new ProfinetConfig(),
+        // profinetConfig: new ProfinetConfig(),
         dialogStatus: false
     }
 
-    componentDidMount() {
+    componentDidMount() {        
+        this._torqueToolService = new TorqueToolService();
         const torqueTool = this.state.torqueTool;
         torqueTool.protocol = this.state.equipType.id;
         this.setState({ torqueTool });
     }
 
     handleChange = (e) => {
+        this._torqueToolService.get()
         const { name, value } = e.target;
         const { torqueTool } = this.state;
         torqueTool[name] = value;
@@ -70,15 +80,17 @@ class TorqueToolForm extends Component {
     }
 
     handleToggle = (e, checked) => {
-        const { name, value } = e.target;
+        const { name } = e.target;
         const { torqueTool } = this.state;
         torqueTool[name] = checked;
         this.setState({ torqueTool });
         console.log(torqueTool);
     }
 
-    handleDialog = () => {
-        this.setState({ dialogStatus: false })
+    handleDialog = (profinetConfig) => {
+        const { torqueTool } = this.state;        
+        torqueTool.profinetConfigId = profinetConfig.id;
+        this.setState({ dialogStatus: false, torqueTool })
     }
 
     openProfinetConfig = () => {
@@ -228,15 +240,16 @@ class TorqueToolForm extends Component {
                         disabled
                         id="outlined-uncontrolled"
                         label="PROFINET CONFIG"
-                        defaultValue={0}
+                        value={torqueTool.profinetConfigId}
                         // className={classes.textField}
                         margin="normal"
                         variant="outlined"
                         onChange={this.handleChange}
                     />
+                    {/* SE HOUVER UM NUMERO DIFERENTE DE 0, APAGAR TODOS OS IDS DO AREA TABLE, DEPOIS APAGAR O PROFINET ID CONFIG */}
                     <Button
                         onClick={this.openProfinetConfig}
-                        variant="extendedFab"
+                        variant="outlined"
                         color="secondary">
                         CONFIGURAR
                     </Button>
@@ -292,14 +305,10 @@ class TorqueToolForm extends Component {
                     </TextField>
                 </div>
 
-                <div className={classes.formRow}>
-                    <Button variant="contained" color="primary" onClick={this.save} >SALVAR</Button>
+                <div className={classes.formRowButton}>
+                    <Button size="large"  variant="contained" color="primary" onClick={this.save} >SALVAR</Button>
                 </div>
-
-
-                {/* <div>
-                    <ProfinetConfigForm />
-                </div> */}
+                
             </div>
         )
     }

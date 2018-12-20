@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core';
 
 import { Paper, AppBar, Tabs, Tab, TextField, MenuItem } from '@material-ui/core';
 import TorqueToolForm from '../../components/TorqueToolForm/TorqueToolForm';
+import TorqueWrenchForm from '../../components/TorqueWrenchForm/TorqueWrenchForm';
 
 const styles = theme => ({
   root: {
@@ -20,7 +21,8 @@ const styles = theme => ({
 
 const equipTypes = [
   { id: 1, name: 'Profinet', table: '', form: TorqueToolForm },
-  { id: 2, name: 'OpenProtocol', table: '', form: TorqueToolForm }
+  { id: 2, name: 'OpenProtocol', table: '', form: TorqueToolForm },
+  { id: 4, name: 'Torquimetro', table: '', form: TorqueWrenchForm }
 ]
 
 class EquipmentsContainer extends Component {

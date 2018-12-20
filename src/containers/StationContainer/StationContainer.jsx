@@ -4,20 +4,20 @@ import React, { Component } from 'react';
 import {withStyles} from '@material-ui/core';
 // import { AppBar, Tabs, Tab, Paper } from '@material-ui/core';
 
-import { Button, TextField, MenuItem, Paper, Tab, Tabs, AppBar } from '@material-ui/core';
+import { Paper, Tab, Tabs, AppBar } from '@material-ui/core';
 
 import TorqueToolTable from '../../components/TorqueToolTable/TorqueToolTable';
-import TorqueToolForm from '../../components/TorqueToolForm/TorqueToolForm';
+// import TorqueToolForm from '../../components/TorqueToolForm/TorqueToolForm';
 
 
 import WorkplaceService from '../../api/workplace';
 
-const equipTypes = [
-    { id: 1, name: 'Profinet', component: TorqueToolTable },
-    { id: 2, name: 'Open Protocol', component: TorqueToolTable },
-    { id: 3, component: TorqueToolTable },
-    { id: 4, component: TorqueToolTable }
-]
+// const equipTypes = [
+//     { id: 1, name: 'Profinet', component: TorqueToolTable },
+//     { id: 2, name: 'Open Protocol', component: TorqueToolTable },
+//     { id: 3, component: TorqueToolTable },
+//     { id: 4, component: TorqueToolTable }
+// ]
 
 // const protocols = [
 //     { id: 1, name: 'Profinet' },
@@ -56,7 +56,7 @@ class StationContainer extends Component {
 
 
     render() {
-        const { selectedType } = this.state;
+        // const { selectedType } = this.state;
         return (
 
             <Paper>
