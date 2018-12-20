@@ -19,7 +19,7 @@ export default class WorkplaceService {
     async getByParameter(a ,...b) {
         var q = "";
         b.map(c => {
-           q += Object.keys(c) + '=' + Object.values(c) + "&";
+           return q += Object.keys(c) + '=' + Object.values(c) + "&";
         })
         q = q.slice(0,-1)
         console.log(q)

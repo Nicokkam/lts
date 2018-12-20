@@ -1,26 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 
 import routes from './routes';
+import Sidebar from './components/Sidebar/Sidebar';
 
 
 const drawerWidth = 240;
@@ -95,93 +80,17 @@ class App extends React.Component {
     open: false,
   };
 
-  handleDrawerOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleDrawerClose = () => {
-    this.setState({ open: false });
-  };
-
   render() {
     
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
 
     return (
 
-      <div className={classes.root}>
-
-        
-        <AppBar
-          position="fixed"
-          className={classNames(classes.appBar, {
-            [classes.appBarShift]: this.state.open 
-          })}
-        >
-          <Toolbar disableGutters={!this.state.open}>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, {
-                [classes.hide]: this.state.open,
-              })}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit" noWrap>
-              LIVE TRUCK STANDARD
-            </Typography>
-          </Toolbar>
-        </AppBar>
-
-        <Drawer
-          variant="permanent"
-          className={classNames(classes.drawer, {
-            [classes.drawerOpen]: this.state.open,
-            [classes.drawerClose]: !this.state.open,
-          })}
-          classes={{
-            paper: classNames({
-              [classes.drawerOpen]: this.state.open,
-              [classes.drawerClose]: !this.state.open,
-            }),
-          }}
-          open={this.state.open}
-        >
-          <div className={classes.toolbar}>
-            <IconButton onClick={this.handleDrawerClose}>
-               <ChevronLeftIcon />
-            </IconButton>
-          </div>
-          <Divider />
-          <List>
-            {
-              routes.map((r, i) => {
-                return (
-                  <React.Fragment key={i}>
-                    <Link to={r.path}>
-                      <ListItem button>
-                        <ListItemIcon>
-                          <r.icon />
-                        </ListItemIcon>
-                        <ListItemText primary={r.navbarName}>
-
-                        </ListItemText>
-                      </ListItem>
-                      <Divider />
-                    </Link>
-                  </React.Fragment>
-                )
-              })
-            }
-          </List>
-
-        </Drawer>
-
+      <div className={classes.root}>       
+      <Sidebar />
         <main className={classes.content}>
           <div className={classes.toolbar} />
-
+          
           {/* TODO: ALTERAR PARA MAPEAMENTO DAS ROTAS */}
           <Switch>
             {

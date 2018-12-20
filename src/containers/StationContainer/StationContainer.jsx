@@ -1,6 +1,7 @@
 
 
 import React, { Component } from 'react';
+import {withStyles} from '@material-ui/core';
 // import { AppBar, Tabs, Tab, Paper } from '@material-ui/core';
 
 import { Button, TextField, MenuItem, Paper, Tab, Tabs, AppBar } from '@material-ui/core';
@@ -8,7 +9,7 @@ import { Button, TextField, MenuItem, Paper, Tab, Tabs, AppBar } from '@material
 import TorqueToolTable from '../../components/TorqueToolTable/TorqueToolTable';
 import TorqueToolForm from '../../components/TorqueToolForm/TorqueToolForm';
 
-import './StationContainer.css';
+
 import WorkplaceService from '../../api/workplace';
 
 const equipTypes = [
@@ -23,7 +24,12 @@ const equipTypes = [
 //     { id: 2, name: 'Open Protocol' }
 // ]
 
-export default class StationContainer extends Component {
+const styles = {
+
+}
+
+
+class StationContainer extends Component {
 
     a = new WorkplaceService();
 
@@ -99,3 +105,5 @@ export default class StationContainer extends Component {
         )
     }
 }
+
+export default withStyles(styles)(StationContainer);
