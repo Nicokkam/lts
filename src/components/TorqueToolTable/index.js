@@ -1,1 +1,1 @@
-export * from './TorqueToolTable.jsx';
+export {default} from './TorqueToolTable.jsx';

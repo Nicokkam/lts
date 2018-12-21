@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import {
   CssBaseline, Toolbar, AppBar, IconButton, Typography
   , Drawer, Divider, List, ListItem, ListItemIcon, ListItemText
+  ,Button
 } from '@material-ui/core';
 
 import MenuIcon from '@material-ui/icons/Menu';
@@ -27,6 +28,14 @@ class Sidebar extends Component {
   handleDrawerClose = () => {
     this.setState({ open: false });
   };
+
+  openLogin = () => {
+    // Abrir alguma coisa para o usuario colocar o user e a senha
+    // ou deixar dois campos para que ele insira
+    // Utilizar o usuario na raiz do projeto
+    // Enviar para pagina inicial após logar, terminar sessao ao fechar o browser
+  }
+
 
   render() {
     const { classes } = this.props;
@@ -53,6 +62,7 @@ class Sidebar extends Component {
             <Typography variant="h6" color="inherit" noWrap>
               LIVE TRUCK STANDARD
             </Typography>
+            <Button variant="contained" color="secondary" onClick={this.openLogin} >LOGIN</Button>
           </Toolbar>
         </AppBar>
 

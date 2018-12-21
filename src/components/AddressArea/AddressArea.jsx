@@ -2,7 +2,7 @@
 // TODO: Prever DBS e Bytes proibidos
 
 import React, { Component } from 'react';
-import { Paper, TextField, MenuItem, withStyles } from '@material-ui/core';
+import { Paper, TextField, withStyles } from '@material-ui/core'; // MenuItem
 import AddressArea from '../../models/AdressArea';
 
 const styles = {
@@ -29,8 +29,7 @@ class AddressAreaForm extends Component {
     }
 
     componentDidMount() {
-        const { byteAreas } = this.props;
-        const { addressAreas } = this.state;        
+         
     }
 
     handleChange = (e, index, property) => {

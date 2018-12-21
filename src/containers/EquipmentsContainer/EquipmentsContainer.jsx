@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core';
 
 import { Paper, AppBar, Tabs, Tab, TextField, MenuItem } from '@material-ui/core';
+
+import TorqueToolTable from '../../components/TorqueToolTable';
+import TorqueWrenchTable from '../../components/TorqueWrenchTable';
+
 import TorqueToolForm from '../../components/TorqueToolForm/TorqueToolForm';
 import TorqueWrenchForm from '../../components/TorqueWrenchForm/TorqueWrenchForm';
 
@@ -20,9 +24,9 @@ const styles = theme => ({
 })
 
 const equipTypes = [
-  { id: 1, name: 'Profinet', table: '', form: TorqueToolForm },
-  { id: 2, name: 'OpenProtocol', table: '', form: TorqueToolForm },
-  { id: 4, name: 'Torquimetro', table: '', form: TorqueWrenchForm }
+  { id: 1, name: 'Profinet', table: TorqueToolTable, form: TorqueToolForm },
+  { id: 2, name: 'OpenProtocol', table: TorqueToolTable, form: TorqueToolForm },
+  { id: 4, name: 'Torquimetro', table: TorqueWrenchTable, form: TorqueWrenchForm }
 ]
 
 class EquipmentsContainer extends Component {
@@ -31,23 +35,25 @@ class EquipmentsContainer extends Component {
     selectedTab: 1,
     equipType: equipTypes[0],
     equipTypes: equipTypes // Buscar do serviço
-  }
+  }  
 
   handleTabChange = (e, value) => {
     this.setState({ selectedTab: value })
   }
 
-  handleEquipTypeChange = (e, value) => {    
+  handleEquipTypeChange = (e, value) => {
     const et = equipTypes.find(x => x.id === e.target.value);
-    this.setState({equipType: et});    
+    this.setState({ equipType: et });
   }
 
   render() {
     const { classes } = this.props;
     const { selectedTab, equipType } = this.state;
+    const component = selectedTab === 0 ? <equipType.table equipType={equipType} /> : <equipType.form equipType={equipType} />
+
     return (
       <div className={classes.root}>
-        <Paper>
+        <Paper>          
           <AppBar position="static" color="default">
             <Tabs
               value={this.state.selectedTab}
@@ -76,13 +82,7 @@ class EquipmentsContainer extends Component {
             }
           </TextField>
 
-          {/* TODO: Render tables or forms */}
-          { 
-            (selectedTab === 1) && <equipType.form equipType={equipType} />
-            // (selectedTab === 0) && <equipType.table equipType={equipType} />            
-          }
-
-
+          {component}
 
         </Paper>
       </div>

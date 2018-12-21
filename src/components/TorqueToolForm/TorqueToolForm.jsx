@@ -1,5 +1,6 @@
 // TODO: Buscar IPs disponíveis
 // TODO: Criar botão para abrir dialog de configuração do Profinet
+// TODO: Apagar profinetID quando trocar de Profinet para Open Protocol
 
 import React, { Component } from 'react';
 import classNames from 'classnames';
@@ -11,9 +12,10 @@ import {
 import TorqueTool from '../..//models/TorqueTool';
 // import ProfinetConfig from '../..//models/ProfinetConfig';
 
-import TorqueToolService from '../../api/torquetools';
 import ProfinetConfigDialog from '../ProfinetConfigDialog/ProfinetConfigDialog';
 
+import TorqueToolService from '../../api/torquetools';
+import IPService from '../../api/ip';
 
 const manufac = [
     { id: 1, name: 'Atlas Copco' },
@@ -36,7 +38,7 @@ const styles = {
         justifyContent: 'space-between',
         width: '70%',
         margin: 'auto',
-        marginTop: '1.5%',        
+        marginTop: '1.5%',
     },
     formRowButton: {
         display: 'flex',
@@ -53,7 +55,8 @@ const styles = {
 };
 class TorqueToolForm extends Component {
 
-    _torqueToolService;
+    _torqueToolService = new TorqueToolService();
+    _ipService = new IPService();
 
     state = {
         equipType: this.props.equipType,
@@ -63,20 +66,28 @@ class TorqueToolForm extends Component {
         dialogStatus: false
     }
 
-    componentDidMount() {        
-        this._torqueToolService = new TorqueToolService();
+    componentDidMount() {
         const torqueTool = this.state.torqueTool;
         torqueTool.protocol = this.state.equipType.id;
         this.setState({ torqueTool });
     }
 
+    componentWillUpdate(a, b) {
+
+    }
+
+    handleIPChange = (e) => {
+        this._ipService.get({ address: e.target.value }).then(a => console.log(a[0]))
+        // Realizar validações e colorir a borda do target caso esteja OK
+        // Exibir uma lista com os IPs disponiveis
+    }
+
+
     handleChange = (e) => {
-        this._torqueToolService.get()
         const { name, value } = e.target;
         const { torqueTool } = this.state;
         torqueTool[name] = value;
         this.setState({ torqueTool });
-        console.log(torqueTool);
     }
 
     handleToggle = (e, checked) => {
@@ -88,7 +99,7 @@ class TorqueToolForm extends Component {
     }
 
     handleDialog = (profinetConfig) => {
-        const { torqueTool } = this.state;        
+        const { torqueTool } = this.state;
         torqueTool.profinetConfigId = profinetConfig.id;
         this.setState({ dialogStatus: false, torqueTool })
     }
@@ -114,6 +125,8 @@ class TorqueToolForm extends Component {
                     open={this.state.dialogStatus}
                     handleClose={this.handleDialog}
                 />
+
+                <div hidden>MENSAGEM DE ERRO</div>
 
                 <div className={classes.formRow}>
                     <TextField
@@ -155,19 +168,8 @@ class TorqueToolForm extends Component {
                         {models.map((m, i) => <MenuItem key={i} value={m} >{m}</MenuItem>)}
                     </TextField>
 
-                    {/* <TextField
-                        select
-                        name="collectResults"
-                        id="outlined-uncontrolled"
-                        label="COLETA RESULTADOS?"
-                        margin="normal"
-                        value={torqueTool.collectResults}
-                        variant="outlined"
-                        onChange={this.handleChange}
-                    >
-                        <MenuItem value={0}>NÃO</MenuItem>
-                        <MenuItem value={1}>SIM</MenuItem>
-                    </TextField> */}
+
+
                     <FormControlLabel
                         labelPlacement="top"
                         label="COLETAR RESULTADOS"
@@ -208,7 +210,7 @@ class TorqueToolForm extends Component {
                         // className={classes.textField}
                         margin="normal"
                         variant="outlined"
-                        onChange={this.handleChange}
+                        onChange={this.handleIPChange}
 
                     />
                     <TextField
@@ -306,9 +308,9 @@ class TorqueToolForm extends Component {
                 </div>
 
                 <div className={classes.formRowButton}>
-                    <Button size="large"  variant="contained" color="primary" onClick={this.save} >SALVAR</Button>
+                    <Button size="large" variant="contained" color="primary" onClick={this.save} >SALVAR</Button>
                 </div>
-                
+
             </div>
         )
     }

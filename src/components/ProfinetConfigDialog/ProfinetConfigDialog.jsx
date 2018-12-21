@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 // import { MenuItem } from '@material-ui/core';
-import TorqueTool from '../../models/TorqueTool';
+
 import AddressArea from '../../models/AdressArea';
 import ProfinetConfig from '../../models/ProfinetConfig';
 import AddressAreaForm from '../AddressArea/AddressArea';
@@ -58,16 +58,17 @@ class ProfinetConfigDialog extends Component {
     save = () => {
         const model = {
             profinetConfig: this.state.profinetConfig,
-            addressArea: this.state.addressAreas 
+            addressArea: this.state.addressAreas
         }
 
-        this._profinetConfigService.create(model).then( config => {            
-            const { profinetConfig } = this.state;            
+        this._profinetConfigService.create(model).then(config => {
+            const { profinetConfig } = this.state;
             profinetConfig['id'] = config.id;
             this.setState({ profinetConfig });
             this.props.handleClose(profinetConfig);
-        });
-        
+        }).catch(e => e);
+            
+
     }
 
     componentDidMount() {
@@ -82,8 +83,8 @@ class ProfinetConfigDialog extends Component {
         this.setState({ profinetConfig });
     }
 
-    handleAreaUpdate = (areas) => {        
-        this.setState({ addressAreas: [...areas] })    
+    handleAreaUpdate = (areas) => {
+        this.setState({ addressAreas: [...areas] })
     }
 
     render() {
