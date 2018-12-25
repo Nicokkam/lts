@@ -3,11 +3,11 @@ import { withStyles } from '@material-ui/core';
 
 import { Paper, AppBar, Tabs, Tab, TextField, MenuItem } from '@material-ui/core';
 
-import TorqueToolTable from '../../components/TorqueToolTable';
-import TorqueWrenchTable from '../../components/TorqueWrenchTable';
+import TorqueToolTable from '../../components/Tables/TorqueToolTable';
+import TorqueWrenchTable from '../../components/Tables/TorqueWrenchTable';
 
-import TorqueToolForm from '../../components/TorqueToolForm/TorqueToolForm';
-import TorqueWrenchForm from '../../components/TorqueWrenchForm/TorqueWrenchForm';
+import TorqueToolForm from '../../components/Forms/TorqueToolForm/TorqueToolForm';
+import TorqueWrenchForm from '../../components/Forms/TorqueWrenchForm/TorqueWrenchForm';
 
 const styles = theme => ({
   root: {
@@ -49,7 +49,9 @@ class EquipmentsContainer extends Component {
   render() {
     const { classes } = this.props;
     const { selectedTab, equipType } = this.state;
-    const component = selectedTab === 0 ? <equipType.table equipType={equipType} /> : <equipType.form equipType={equipType} />
+    const component = selectedTab === 0 
+      ? <equipType.table equipType={equipType} /> 
+      : <equipType.form equipType={equipType} />
 
     return (
       <div className={classes.root}>

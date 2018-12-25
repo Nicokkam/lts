@@ -62,7 +62,7 @@ class Sidebar extends Component {
             <Typography variant="h6" color="inherit" noWrap>
               LIVE TRUCK STANDARD
             </Typography>
-            <Button variant="contained" color="secondary" onClick={this.openLogin} >LOGIN</Button>
+            <Button variant="contained" className={classes.loginButton} onClick={this.openLogin} >LOGIN</Button>
           </Toolbar>
         </AppBar>
 
@@ -91,15 +91,15 @@ class Sidebar extends Component {
               routes.map((r, i) => {
                 return (
                   <React.Fragment key={i}>
-                    <Link to={r.path}>
+                    <Link to={r.path} style={{textDecoration: 'none'}}>
                       <ListItem button>
                         <ListItemIcon>
                           <r.icon />
                         </ListItemIcon>
                         <ListItemText primary={r.navbarName} />
-                      </ListItem>
-                      <Divider />
+                      </ListItem>                      
                     </Link>
+                    <Divider />
                   </React.Fragment>
                 )
               })

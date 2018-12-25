@@ -6,7 +6,7 @@ import {withStyles} from '@material-ui/core';
 
 import { Paper, Tab, Tabs, AppBar } from '@material-ui/core';
 
-import TorqueToolTable from '../../components/TorqueToolTable/TorqueToolTable';
+import TorqueToolTable from '../../components/Tables/TorqueToolTable/TorqueToolTable';
 // import TorqueToolForm from '../../components/TorqueToolForm/TorqueToolForm';
 
 

@@ -30,6 +30,10 @@ const styles = theme => ({
 
 class App extends React.Component {
 
+  state = {
+    user: []
+  }
+
   render() {
 
     const { classes } = this.props;
