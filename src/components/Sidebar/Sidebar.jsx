@@ -48,7 +48,7 @@ class Sidebar extends Component {
             [classes.appBarShift]: this.state.open
           })}
         >
-          <Toolbar disableGutters={!this.state.open}>
+          <Toolbar disableGutters={!this.state.open} className={classes.toolBar}>
             <IconButton
               color="inherit"
               aria-label="Open drawer"

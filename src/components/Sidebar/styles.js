@@ -5,6 +5,7 @@ export const styles = theme => ({
       display: 'flex',
     },
     appBar: {
+      display: 'flex',
       background: '#2a313d',
       zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(['width', 'margin'], {
@@ -62,7 +63,12 @@ export const styles = theme => ({
       padding: theme.spacing.unit * 3,
     }
     ,loginButton: {
+      display: 'flex',
+      justifySelf: 'end',
       color: 'white',
       background: '#29b244'
+    },
+    toolBar: {
+      display: 'flex',            
     }
 });
