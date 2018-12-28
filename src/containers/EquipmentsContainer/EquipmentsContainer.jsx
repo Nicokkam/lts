@@ -23,7 +23,7 @@ const styles = theme => ({
   }
 })
 
-const equipTypes = [
+const equipTypeList = [
   { id: 1, name: 'Profinet', table: TorqueToolTable, form: TorqueToolForm },
   { id: 2, name: 'OpenProtocol', table: TorqueToolTable, form: TorqueToolForm },
   { id: 4, name: 'Torquimetro', table: TorqueWrenchTable, form: TorqueWrenchForm }
@@ -32,30 +32,30 @@ const equipTypes = [
 class EquipmentsContainer extends Component {
 
   state = {
-    selectedTab: 1,
-    equipType: equipTypes[0],
-    equipTypes: equipTypes // Buscar do serviço
-  }  
+    selectedTab: 0,
+    equipType: equipTypeList[0],
+    equipTypeList: equipTypeList // Buscar do serviço
+  }
 
   handleTabChange = (e, value) => {
     this.setState({ selectedTab: value })
   }
 
   handleEquipTypeChange = (e, value) => {
-    const et = equipTypes.find(x => x.id === e.target.value);
+    const et = equipTypeList.find(x => x.id === e.target.value);
     this.setState({ equipType: et });
   }
 
   render() {
     const { classes } = this.props;
     const { selectedTab, equipType } = this.state;
-    const component = selectedTab === 0 
-      ? <equipType.table equipType={equipType} /> 
-      : <equipType.form equipType={equipType} />
+    const component = selectedTab === 0
+      ? <equipType.table equipType={equipType.id} />
+      : <equipType.form equipType={equipType.id} />
 
     return (
       <div className={classes.root}>
-        <Paper>          
+        <Paper>
           <AppBar position="static" color="default">
             <Tabs
               value={this.state.selectedTab}
@@ -80,7 +80,7 @@ class EquipmentsContainer extends Component {
             variant="outlined"
             onChange={this.handleEquipTypeChange}>
             {
-              this.state.equipTypes.map((e, i) => (<MenuItem key={i} value={e.id}>{e.id} - {e.name}</MenuItem>))
+              this.state.equipTypeList.map((e, i) => (<MenuItem key={i} value={e.id}>{e.id} - {e.name}</MenuItem>))
             }
           </TextField>
 

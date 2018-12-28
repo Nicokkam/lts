@@ -1,7 +1,7 @@
 
 
 import React, { Component } from 'react';
-import {withStyles} from '@material-ui/core';
+import { withStyles } from '@material-ui/core';
 // import { AppBar, Tabs, Tab, Paper } from '@material-ui/core';
 
 import { Paper, Tab, Tabs, AppBar } from '@material-ui/core';
@@ -51,7 +51,7 @@ class StationContainer extends Component {
     }
 
     componentDidMount() {
-        this.a.getByParameter().then(a => console.log(a))
+        // this.a.getByParameter().then(a => console.log(a))
     }
 
 
@@ -68,40 +68,13 @@ class StationContainer extends Component {
                         fullWidth
                         onChange={this.handleTabChange}
                     >
-                        <Tab value={0} label="Active" />                        
-                        <Tab value={1} label="Active" />
-                    </Tabs>
-                </AppBar>                
-            </Paper>
+                        <Tab value={0} label="EQUIPAMENTOS" />
+                        <Tab value={1} label="PESSOAS" />
 
-            // <div>                
-            //     <Paper>
-            //     {/* <Button size="large" variant="contained" color="primary">EQUIPAMENTOS</Button>
-            //     <Button size="large" variant="contained" color="primary">POSTOS</Button> */}
-            //         <TextField
-            //             select
-            //             style={{width: '200px'}}
-            //             name="equipType"
-            //             id="outlined-equipType"
-            //             label="TIPO DE EQUIPAMENTO"
-            //             value={selectedType}
-            //             margin="dense"
-            //             variant="outlined"
-            //             onChange={this.handleTableChange} >
-            //             {equipTypes.map((e, i) => {
-            //                 return (
-            //                     <MenuItem key={i} value={e.id}>{e.id} - {e.name}</MenuItem>
-            //                 );
-            //             }) }
-            //         </TextField>
-            //     {/* {selectedType === 0 && <TorqueToolTable equipType={selectedType} />} */}
-            //     {/* {selectedType === 1 && <TorqueToolTable equipType={selectedType} />} */}
-            //     {selectedType === 1 && <TorqueToolForm equipType={selectedType} />}
-            //     {selectedType === 2 && <TorqueToolForm equipType={selectedType} />}
-            //     {/* FAZER UM CASE DE ACORDO COM O EQUIPTYPE SELECIONADO */}
-            //     {/* CRIAR UMA VIEW ESPECIFICA PARA CADA TIPO DE TABELA */}
-            //     </Paper>
-            // </div >
+                    </Tabs>
+                </AppBar>
+            </Paper>         
+         
         )
     }
 }

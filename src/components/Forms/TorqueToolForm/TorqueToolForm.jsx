@@ -67,13 +67,11 @@ class TorqueToolForm extends Component {
     }
 
     componentDidMount() {
-        const torqueTool = this.state.torqueTool;
-        torqueTool.protocol = this.state.equipType.id;
-        this.setState({ torqueTool });
+
     }
 
-    componentWillUpdate(a, b) {
-
+    componentWillReceiveProps(a, b) {
+        
     }
 
     handleIPChange = (e) => {
@@ -111,7 +109,9 @@ class TorqueToolForm extends Component {
     }
 
     save = () => {
-        this._torqueToolService.create(this.state.torqueTool)
+        const { torqueTool } = this.state.torqueTool;
+        torqueTool.protocol = this.state.equipType;
+        this._torqueToolService.create(torqueTool)
             .then(data => console.log(data));
     }
 
@@ -132,7 +132,9 @@ class TorqueToolForm extends Component {
                     <TextField
                         id="outlined-uncontrolled"
                         label="SSB"
-                        defaultValue="0"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
                         margin="normal"
                         variant="outlined"
                         onChange={this.handleChange}
@@ -224,7 +226,7 @@ class TorqueToolForm extends Component {
                         onChange={this.handleChange}
                     />
                     <TextField
-                        disabled={this.props.equipType.id !== 1}
+                        disabled={this.props.equipType !== 1}
                         id="outlined-uncontrolled"
                         label="IP PROFINET"
                         defaultValue="192.27."
@@ -237,7 +239,8 @@ class TorqueToolForm extends Component {
                 </div>
 
                 {/* BOTÃO PARA ABRIR A JANELA DE CONFIGURAÇÃO PROFINET */}
-                <div className={classNames(classes.formRow, { [classes.hidden]: this.props.equipType.id !== 1 })}>
+                <div className={classNames(classes.formRow,
+                    { [classes.hidden]: this.props.equipType !== 1 })}>
                     <TextField
                         disabled
                         id="outlined-uncontrolled"
@@ -307,7 +310,8 @@ class TorqueToolForm extends Component {
                     </TextField>
                 </div>
 
-                <div className={classes.formRowButton}>
+                <div className={classNames(classes.formRowButton, 
+                { [classes.hidden] :  this.props.hideButton})}>
                     <Button size="large" variant="contained" color="primary" onClick={this.save} >SALVAR</Button>
                 </div>
 
