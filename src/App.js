@@ -34,6 +34,15 @@ class App extends React.Component {
     user: []
   }
 
+  handleLogin = (mode, user) => {
+    if (mode === 'logoff') {
+      this.setState({user: {}})
+      return;
+    } 
+    // Se usuario foi validado
+    this.setState({user});
+  }
+
   render() {
 
     const { classes } = this.props;
@@ -41,7 +50,7 @@ class App extends React.Component {
     return (
 
       <div className={classes.root}>
-        <Sidebar />
+        <Sidebar onUserLogin={this.handleLogin} user={this.state.user} />
         <ToastContainer />
         <main className={classes.content}>
           <div className={classes.toolbar} />          
