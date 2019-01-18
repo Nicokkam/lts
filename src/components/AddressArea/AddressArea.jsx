@@ -22,22 +22,24 @@ const areas = [
 
 areas.push()
 
+// TODO: Se for do tipo ProfinetConfig, setar valores padrao
+
 class AddressAreaForm extends Component {
 
     state = {
-        addressAreas: this.props.byteAreas.map((b, i) => (new AddressArea()))
+        addressAreas: []
     }
 
     componentDidMount() {
-         
+        const addressAreas = this.props.byteAreas.map((b, i) => (new AddressArea(b)))
+        this.setState({addressAreas: [...addressAreas]});        
     }
 
     handleChange = (e, index, property) => {
         // this.props.handleChange(this.state.addressAreas)
         const { addressAreas } = this.state;
         addressAreas[index][property] = e.target.value;
-        this.setState({addressAreas: [...addressAreas]});
-        this.props.onChange(this.state.addressAreas);
+        this.setState({ addressAreas: [...addressAreas] });        
     }
 
     render() {
@@ -55,7 +57,7 @@ class AddressAreaForm extends Component {
 }
 
 const AddressAreaFields = (props) => {
-      
+
     return (
         <div>
             <div>{props.name.toUpperCase()}</div>

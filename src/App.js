@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Route, Switch } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 
 import routes from './routes';
 import Sidebar from './components/Sidebar/Sidebar';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const styles = theme => ({
@@ -56,7 +56,7 @@ class App extends React.Component {
           <div className={classes.toolbar} />          
           <Switch>
             {
-              routes.map((r, i) => (<Route key={i} exact path={r.path} component={r.component}></Route>))
+              routes.map((r, i) => (<Route key={i} exact path={r.path} component={r.component} ></Route>))
             }
           </Switch>
 

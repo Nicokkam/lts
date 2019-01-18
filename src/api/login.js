@@ -5,20 +5,21 @@ import axios from 'axios';
 export default class LoginService {
     
     _url = process.env.REACT_APP_LOGIN_SERVER;
-
-    user = {};
+    _user = {};
 
     async auth(login) { //user, pass        
         await axios.post(this._url, login).then((res) => {
             const response = res.data;
-            if (response.ValidateUserResult === "Ok") {
+            console.log(123);
 
+            if (response.ValidateUserResult === "Ok") {
+                this._user.isLogged = true;
             }
         });
     }
 
     validate() {
-        if (this.user.isLogged) 
+        if (this._user.isLogged) 
             return true;        
         return false;
     }
