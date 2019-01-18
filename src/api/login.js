@@ -4,6 +4,7 @@ import axios from 'axios';
 
 export default class LoginService {
     
+<<<<<<< HEAD
     _url = process.env.REACT_APP_LOGIN_SERVER;
     _user = {};
 
@@ -22,10 +23,17 @@ export default class LoginService {
         if (this._user.isLogged) 
             return true;        
         return false;
+=======
+    
+
+    async auth({login}) {
+
+>>>>>>> 9992178fa5b9443493fd1a3cd460220d3c460f78
     }
 
     async logoff() {
-        // user = {};
+
     }
+
 
 }

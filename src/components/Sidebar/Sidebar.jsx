@@ -13,13 +13,9 @@ import { Link } from 'react-router-dom';
 
 import routes from '../../routes';
 
-import { styles } from './styles';
-
-import LoginService from '../../api/login';
+import { styles } from './styles'
 
 class Sidebar extends Component {
-
-  _loginService = new LoginService();
 
   state = {
     open: false
@@ -34,7 +30,6 @@ class Sidebar extends Component {
   };
 
   openLogin = () => {
-    this._loginService.auth({user: 'ssbhpe', pass: 'Scaniascania1'});
     // Abrir alguma coisa para o usuario colocar o user e a senha
     // ou deixar dois campos para que ele insira
     // Utilizar o usuario na raiz do projeto
