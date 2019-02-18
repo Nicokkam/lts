@@ -5,16 +5,16 @@
 // TODO: Criar botao de editar e botao para excluir 
 
 import React, { Component } from 'react';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+// import Table from '@material-ui/core/Table';/
+// import TableBody from '@material-ui/core/TableBody';
+// import TableCell from '@material-ui/core/TableCell';
+// import TableHead from '@material-ui/core/TableHead';
+// import TableRow from '@material-ui/core/TableRow';
 import { Paper, withStyles, Button, IconButton, Icon } from '@material-ui/core';
 import MuiDataTable from 'mui-datatables';
 
-import Edit from '@material-ui/icons/Edit';
-import Delete from '@material-ui/icons/Delete';
+// import Edit from '@material-ui/icons/Edit';
+// import Delete from '@material-ui/icons/Delete';
 
 import TorqueToolService from '../../../api/torquetools';
 
@@ -77,15 +77,15 @@ class TorqueToolTable extends Component {
 
     handleDialog = (action) => {
         if (action === 'close') {
-            this.setState({dialog: false});
-            return;
+            this.setState({dialog: false});            
         }        
     }
 
     render() {
-        const { classes } = this.props;
+        // const { classes } = this.props;
         // const headers = columns.map((c, i) => (<TableCell className={classes['header-' + c]} key={i}>{c.toUpperCase()}</TableCell>));
-        const { torqueToolList, dialog } = this.state;
+        // const { torqueToolList, dialog } = this.state;
+        const { dialog } = this.state;
         const { equipType } = this.props;
         return (
 
