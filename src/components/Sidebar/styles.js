@@ -54,19 +54,26 @@ export const styles = theme => ({
     toolbar: {
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'flex-end',
+      // justifyContent: 'flex-end',
       padding: '0 8px',
       ...theme.mixins.toolbar,
     },
     content: {
       flexGrow: 1,
       padding: theme.spacing.unit * 3,
-    }
-    ,loginButton: {
+    },
+    loginContainer: {
       display: 'flex',
-      justifySelf: 'end',
+      width: '60%',
+      justifyContent: 'flex-end',      
+    },
+    loginButton: {
+      display: 'flex',            
       color: 'white',
       background: '#29b244'
+    },
+    title: {
+      width: '30%'
     },
     toolBar: {
       display: 'flex',            

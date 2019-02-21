@@ -31,7 +31,22 @@ const styles = theme => ({
 class App extends React.Component {
 
   state = {
-    user: []
+    user: {
+      ssb: '',
+      logged: false
+    }
+  }
+
+  handleLogin = (ssb) => {
+    const defaultUser = {user: '', logged: false}
+    const user = Object.assign({}, this.state.user);
+    if (ssb) {
+      user.ssb = ssb;
+      user.logged = true;
+      this.setState({user});
+    } else {
+      this.setState({user: defaultUser});
+    }
   }
 
   render() {
@@ -41,13 +56,17 @@ class App extends React.Component {
     return (
 
       <div className={classes.root}>
-        <Sidebar />
+
+        <Sidebar user={this.state.user} handleLogin={this.handleLogin} />
         <ToastContainer />
+
+        {this.state.user.ssb}
+
         <main className={classes.content}>
-          <div className={classes.toolbar} />          
+          <div className={classes.toolbar} />
           <Switch>
             {
-              routes.map((r, i) => (<Route key={i} exact path={r.path} component={r.component} ></Route>))
+              routes.map((r, i) => (<Route key={i} exact path={r.path} component={r.component} />))
             }
           </Switch>
 

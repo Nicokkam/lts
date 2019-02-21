@@ -1,0 +1,85 @@
+.root {
+    display: 'flex';
+}
+
+.appBar {
+    display: 'flex';
+    background: '#2a313d';
+    /* zIndex: theme.zIndex.drawer + 1 transition: theme.transitions.create(['width' 'margin'] ;
+    easing: theme.transitions.easing.sharp duration: theme.transitions.duration.leavingScreen */
+}
+
+.appBarShift {
+    /* marginLeft: drawerWidth width: `calc(100% - $ {
+        drawerWidth
+    }
+    px)` transition: theme.transitions.create(['width' 'margin'];
+    easing: theme.transitions.easing.sharp duration: theme.transitions.duration.enteringScreen */
+}
+
+.menuButton {
+    margin-left: 12;
+    margin-right: 36;
+}
+
+.hide {
+    display: 'none';
+}
+
+.drawer {
+    width: drawerWidth;
+    flex-shrink: 0;
+    white-space: 'nowrap';
+}
+
+.drawerOpen {
+    /* width: drawerWidth transition: theme.transitions.create('width';
+    easing: theme.transitions.easing.sharp duration: theme.transitions.duration.enteringScreen */
+}
+
+
+.drawerClose {
+    /* 
+    transition: theme.transitions.create('width';
+    easing: theme.transitions.easing.sharp duration: theme.transitions.duration.leavingScreen
+        }
+
+    ) 
+    overflowX: 'hidden';
+    width: theme.spacing.unit * 7+1 .[theme.breakpoints.up('sm')] {
+    width: theme.spacing.unit * 9 + 1
+    } 
+    */
+}
+
+.toolbar {
+    display: 'flex';
+    align-items: 'center';
+    padding: '0 8px';
+    /* ...theme.mixins.toolbar */
+}
+
+.content {
+    flex-grow: 1;
+    /* padding: theme.spacing.unit * 3 */
+}
+
+.loginContainer {
+    display: 'flex';
+    width: '60%';
+    justify-content: 'flex-end';
+}
+
+.loginButton {
+    display: 'flex';
+    color: 'white';
+    background: '#29b244'
+}
+
+.title {
+    width: '30%'
+}
+
+.toolBar {
+    display: 'flex';
+}

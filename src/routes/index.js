@@ -17,6 +17,7 @@ import LocalLibrary from '@material-ui/icons/LocalLibrary'
 // import Power from '@material-ui/icons/Power'
 // import Public from '@material-ui/icons/Public'
  import EventNote from '@material-ui/icons/EventNote'
+import ReportContainer from '../containers/ReportContainer';
 
 
 
@@ -62,6 +63,13 @@ const routes = [
     navbarName: "ORGANIZAÇÃO",
     icon: Person,
     component: IPContainer
+  },
+  {
+    path: "/relatorio",
+    sidebarName: "RELATORIO",
+    navbarName: "RELATORIO",
+    icon: Help,
+    component: ReportContainer
   },
   {
     path: "/ajuda",
