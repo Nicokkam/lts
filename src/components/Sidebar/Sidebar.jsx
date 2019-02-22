@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import {
   CssBaseline, Toolbar, AppBar, IconButton, Typography
   , Drawer, Divider, List, ListItem, ListItemIcon, ListItemText
-  , Button
+  , Button, TextField
 } from '@material-ui/core';
 
 import MenuIcon from '@material-ui/icons/Menu';
@@ -23,8 +23,8 @@ class Sidebar extends Component {
   state = {
     open: false,
     login: {
-      user: 'TESTE',
-      pass: 'TESTE'
+      user: '',
+      pass: ''
     }
   }
 
@@ -40,13 +40,11 @@ class Sidebar extends Component {
     this.setState({ open: false });
   };
 
-  handleInputChange = ($e) => {
-    const target = $e.target;
-    const login = { ...this.state.login };        
-    console.log(target.name, target.value, login);
-    // login[target.name] = login[target.value]
-    // this.setState({ ...login });
-    // console.log(login);
+  handleInputChange = name => $e => {
+    const login = Object.assign({}, this.state.login);
+    login[name] = $e.target.value;
+    this.setState({ login });
+
   }
 
   onLogin = (loginTrigger) => {
@@ -89,7 +87,7 @@ class Sidebar extends Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+            <Typography className={classes.title} variant="h6" color="inherit">
               LIVE TRUCK STANDARD
             </Typography>
             <div className={classes.loginContainer}>
@@ -100,12 +98,31 @@ class Sidebar extends Component {
                     <Button variant="contained" className={classes.logoffButton} onClick={() => this.onLogin('logoff')} >LOGOFF</Button>
                   </div>
                   :
-                  <div>
-                    <div>
-                      <input name="user" type="text" value={this.state.login.user || ''} onChange={this.handleInputChange} />
-                      <input name="pass" type="password" value={this.state.login.pass || ''} onChange={this.handleInputChange} />
+                  <div className={classes.loginInput}>
+                    <TextField
+                      id="user"
+                      label="Usuario"
+                      className={classes.textField}
+                      value={this.state.login.user}
+                      onChange={this.handleInputChange('user')}
+                      margin="normal"
+                      variant="filled"
+                    />
+                    <TextField
+                      id="pass"
+                      type="password"
+                      label="Senha"
+                      className={classes.textField}
+                      value={this.state.login.pass}
+                      onChange={this.handleInputChange('pass')}
+                      margin="normal"
+                      variant="filled"
+                      
+
+                    />
+                    <div className={classes.loginButtonContainer}>
+                      <Button variant="contained" className={classes.loginButton} onClick={() => this.onLogin('login')} >LOGIN</Button>
                     </div>
-                    <Button variant="contained" className={classes.loginButton} onClick={() => this.onLogin('login')} >LOGIN</Button>
                   </div>
 
               }

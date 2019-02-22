@@ -7,6 +7,13 @@ export const columns = [
         }
     },
     {
+        name: "DESCRIÇÃO",
+        options: {
+            filter: false,
+            sort: false,
+        }
+    },
+    {
         name: "SSB",
         options: {
             filter: false,
@@ -21,7 +28,7 @@ export const columns = [
         }
     },
     {
-        name: "MODEL ID",
+        name: "MODELO",
         options: {
             filter: true,
             sort: false,
@@ -35,12 +42,13 @@ export const columns = [
         }
     },
     {
-        name: "DESCRIÇÃO",
+        name: "PN IP",
         options: {
             filter: false,
             sort: false,
         }
     },
+    
     {
         name: "TOQUE DATA",
         options: {

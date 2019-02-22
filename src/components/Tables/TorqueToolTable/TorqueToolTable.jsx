@@ -22,10 +22,7 @@ import {columns} from './columns';
 import TorqueToolDialog from '../../Dialogs/TorqueToolDialog';
 
 const fakeData = [
-    ["Joe James", "Test Corp", "Yonkers", "NY", 'a', 'b',],
-    ["John Walsh", "Test Corp", "Hartford", "CT", 'a', 'b',],
-    ["Bob Herm", "Test Corp", "Tampa", "FL", 'a', 'b', ],
-    ["James Houston", "Test Corp", "Dallas", "TX", 'a', 'b', ],
+   
 ];
 
 const iconButton = (prop) => (<IconButton><Icon>remove_red_eye</Icon></IconButton>);

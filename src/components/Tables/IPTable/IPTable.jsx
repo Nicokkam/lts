@@ -3,7 +3,13 @@ import MuiDataTable from 'mui-datatables';
 
 const columns = [
     {
-        name: 'Ethernet'
+        name: 'Nome'
+    },
+    {
+        name: 'Tipo'
+    },
+    {
+        name: 'IP Ethernet'
     },
     {
         name: 'MAC Address'

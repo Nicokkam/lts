@@ -1,6 +1,6 @@
 // core components/views
-import  DashboardContainer from '../containers/DashboardContainer';
-import  StationContainer from '../containers/StationContainer';
+import DashboardContainer from '../containers/DashboardContainer';
+import StationContainer from '../containers/StationContainer';
 import EquipmentsContainer from "../containers/EquipmentsContainer";
 import IPContainer from '../containers/IPContainer';
 
@@ -10,13 +10,14 @@ import Dashboard from "@material-ui/icons/Dashboard";
 import Person from "@material-ui/icons/Person";
 import Help from "@material-ui/icons/Help";
 // import Storage from '@material-ui/icons/Storage'
-import DevelopmentBoard from '@material-ui/icons/DeveloperBoard'
+import DevelopmentBoard from '@material-ui/icons/DeveloperBoard';
 import Router from '@material-ui/icons/Router';
-import LocalLibrary from '@material-ui/icons/LocalLibrary'
+import LocalLibrary from '@material-ui/icons/LocalLibrary';
+import Receipt from '@material-ui/icons/Receipt';
 // import Style from '@material-ui/icons/Style'
 // import Power from '@material-ui/icons/Power'
 // import Public from '@material-ui/icons/Public'
- import EventNote from '@material-ui/icons/EventNote'
+import EventNote from '@material-ui/icons/EventNote'
 import ReportContainer from '../containers/ReportContainer';
 
 
@@ -68,7 +69,7 @@ const routes = [
     path: "/relatorio",
     sidebarName: "RELATORIO",
     navbarName: "RELATORIO",
-    icon: Help,
+    icon: Receipt,
     component: ReportContainer
   },
   {

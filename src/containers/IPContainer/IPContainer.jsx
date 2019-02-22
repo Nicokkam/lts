@@ -17,6 +17,11 @@ export default class IPContainer extends Component {
     const {data} = this.state;
     return (
       <Paper>
+        <div>EXIBIR</div>
+        <div>TODOS</div>
+        <div>LIVRES</div>
+        <div>OCUPADOS</div>
+
         <IPTable data={data}/>
       </Paper>
     )

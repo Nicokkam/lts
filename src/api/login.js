@@ -10,7 +10,7 @@ export default class LoginService {
         ssb: ''
     };
 
-    async auth(login) { 
+    async auth(login) {         
         try {
             const res = await axios.post(this._url, login);            
             switch(res.data.ValidateUserResult) {
