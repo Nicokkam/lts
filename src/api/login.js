@@ -10,34 +10,23 @@ export default class LoginService {
         ssb: ''
     };
 
-    async auth(login) {         
+    async auth(login) {
         try {
-            const res = await axios.post(this._url, login);            
-            switch(res.data.ValidateUserResult) {
-                case "Ok": 
+            const res = await axios.post(this._url, login);
+            switch (res.data.ValidateUserResult) {
+                case "Ok":
                     this._user.isLogged = true;
                     this._user.ssb = login.user;
-                    return login.user;                
+                    return login.user;
                 default:
-                    return  false;
-                }
+                    console.error('User not authenticated');
+                    return false;
+            }
         }
         catch (err) {
             console.error(err);
         }
-        // await axios.post(this._url, login).then((res) => {
-        //     const response = res.data;
-        //     if (response.ValidateUserResult !== "Ok") {
-        //         console.error('User not authenticated');
-        //         return false;
-        //     }
-        //     if (response.ValidateUserResult === "Ok") {
-        //         console.log(`User logged ${login.user}`);
-        //         this._user.ssb = login.user;
-        //         this._user.isLogged = true;
-        //         return true;
-        //     }
-        // });
+
     }
 
     validate() {

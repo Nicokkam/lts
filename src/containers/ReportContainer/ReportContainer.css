@@ -1,0 +1,91 @@
+
+.report-header {    
+    color: red;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.report-filters {
+    display: flex;
+    width: 100%;
+    margin-top: 5%;
+    justify-content: center;
+}
+
+.report-kpis {
+    display: flex;
+    width: 100%;
+    margin-top: 2.5%;
+    font-size: 1.25vh;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+}
+
+.report-kpis-head {
+    display: flex;
+    width: 100%;
+    justify-content: center;    
+}
+
+.report-prod-day, .report-drun-chassis, .report-drun-general {    
+    display: flex;    
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 30%;
+    flex-direction: column;    
+}
+
+.report-key {
+    display: flex;
+    align-self: center;
+}
+
+.report-value {
+    display: flex;
+    align-self: center;
+}
+
+.report-lts-table {
+    justify-content: center;
+    display: flex;
+    width: 100%;    
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.report-lts-container {
+    display: flex;
+    padding: 2%;
+    width: 100%;
+    flex-wrap: wrap;
+    
+}
+
+/* PRODUCTION */
+
+/* LTS */
+.report-lts-percentage {
+    display: flex;
+    width: 100%;
+    font-size: 1.5vh;    
+    justify-content: center;
+}
+
+.report-lts-sum {
+    display: flex;    
+    width: 100%;
+    margin-top: 1.5%;
+    font-size: 1vh;    
+
+    justify-content: space-around;
+}
+
+.report-lts-total {
+    display: flex;    
+}
+
+.report-lts-ok {
+    display: flex;    
+}
