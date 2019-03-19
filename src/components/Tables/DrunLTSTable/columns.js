@@ -37,12 +37,19 @@ export const columns = [
         }
     },
     {
-        name: "Processo",
+        name: "%",
         options: {
             filter: false,
-            sort: false,
+            sort: true,
         }
     },
+    // {
+    //     name: "Processo",
+    //     options: {
+    //         filter: false,
+    //         sort: false,
+    //     }
+    // },
     {
         name: "Turno",
         options: {

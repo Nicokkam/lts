@@ -1,35 +1,57 @@
 import React, { Component } from 'react';
-import { Paper, Select, FormControl, FormHelperText } from '@material-ui/core';
+import { Paper, Select, MenuItem, FormControl, FormHelperText } from '@material-ui/core';
 import { MuiPickersUtilsProvider } from 'material-ui-pickers';
 import { DatePicker } from 'material-ui-pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import DrunLTSTable from '../../components/Tables/DrunLTSTable';
 import DrunLTSApi from '../../api/drunlts.js';
+import { Kpi } from '../../components/Report';
+import { LTSKpi } from '../../components/Report';
 
 import Typography from '@material-ui/core/Typography';
 
 import './ReportContainer.css';
 
-const intervalTime = 10000;
+const intervalTime = 60000;
+const defaultValues = {
+  directRunGeral: 0,
+  directRunChassis: 0,
+  objective: 0,
+  produced: 0,
+  stopTime: "00:00:00",
+  shift: 0
+};
 
-// TODO: Atualizar de 1 em 1 minuto dados da API
 export default class ReportContainer extends Component {
 
   state = {
+
     filter: {
       date: new Date(),
+      line: 'truck'
+    },
+    dailyResult: {
+      truck: defaultValues,
+      bus: defaultValues
     },
     result: {
-      total: 0,
-      ok: 0
+      bus: {
+        total: 0,
+        ok: 0,
+        percentage: 0
+      },
+      truck: {
+        total: 0,
+        ok: 0,
+        percentage: 0
+      }
     },
-    produced: 0,
-    drun: {
-      chassis: 0,
-      chassisGeral: 0
-    },
-    data: [],
-    percentage: 0
+    drunLts: {
+      truck: [],
+      bus: []
+    }
+
+
   }
 
   componentDidMount() {
@@ -44,21 +66,45 @@ export default class ReportContainer extends Component {
   updateData = (date) => {
     const api = new DrunLTSApi();
     api.getByDate(date).then(d => {
-      this.setState({ data: d.data });
-      this.calculatePercentage(d.data);
+      const dailyResult = Object.assign({}, this.state.dailyResult);
+      dailyResult.bus = d.data.dailyResult.filter(x => x.processId === 3)[0] || defaultValues;
+      dailyResult.truck = d.data.dailyResult.filter(x => x.processId === 2)[0] || defaultValues;
+      const drunLts = { ...d.data.drunLts };
+      drunLts.truck = d.data.drunLts.filter(x => x.processId <= 2) || [];
+      drunLts.bus = d.data.drunLts.filter(x => x.processId === 3) || [];
+      this.setState({ dailyResult });
+      this.setState({ drunLts });
+      this.calculatePercentage(drunLts.truck, 'truck');
+      this.calculatePercentage(drunLts.bus, 'bus');
+    }).catch(e => {
+      console.error(e);
     });
   }
 
-  calculatePercentage(data) {
-    if (!data || !data.length)
+  calculatePercentage(data, line) {
+    const { result } = { ...this.state };
+
+    if (!data || !data.length) {
+      result[line].total = 0;
+      result[line].ok = 0;
+      result[line].percentage = 0;
+      this.setState({ result });
       return;
+    }
+
     const total = data.map(d => d.ltQuantity).reduce((a, b) => a + b);
     const ok = data.map(d => d.ltOk).reduce((a, b) => a + b);
-    const { result } = this.state;
-    result.total = total;
-    result.ok = ok;
-    const percentage = ((ok / total) * 100).toFixed(2);
-    this.setState({ result, percentage });
+    result[line].total = total;
+    result[line].ok = ok;
+    result[line].percentage = ((ok / total) * 100).toFixed(2);
+    this.setState({ result });
+  }
+
+  handleSelectLine = (e) => {
+    const { value } = e.target;
+    const filter = { ...this.state.filter };
+    filter.line = value;
+    this.setState({ filter });
   }
 
   handleDateChange = (e) => {
@@ -68,80 +114,58 @@ export default class ReportContainer extends Component {
   }
 
   render() {
-    const { data, produced, drun } = this.state;
+
+    const { drunLts, dailyResult, result, filter } = this.state;
+    const table = drunLts[filter.line];
+    const res = result[filter.line];
+    const dr = dailyResult[filter.line];
+
     return (
-      <div className="report-container">
-        <Paper>
-          <div className='report-header'>
 
-            <Typography variant="headline" align="center" gutterBottom>
-              RELATÓRIO
-              </Typography>
-          </div>
+      <Paper>
 
-          <div className='report-kpis'>
+        <div className='report-header'>
+          <Typography variant="headline" align="center" gutterBottom> RELATÓRIO </Typography>
+        </div>
 
-            <div className="report-kpis-head">
-              <div className="report-prod-day">
-                <div className="report-key"> PRODUÇÃO DO DIA: </div>
-                <div className="report-value"> {produced} </div>
-              </div>
+        <div className='report-filters'>
 
-              <div className="report-drun-chassis">
-                <div className="report-key">DIRECT RUN CHASSIS: </div>
-                <div className="report-value"> {drun.chassis} %</div>
-              </div>
+          <FormControl variant="outlined" className="filter-line">
+            <Select
+              value={filter.line}
+              onChange={this.handleSelectLine}
+            >
+              <MenuItem value="truck">Caminhões</MenuItem>
+              <MenuItem value="bus">Ônibus</MenuItem>
+            </Select>
+            <FormHelperText>Selecione uma linha</FormHelperText>
+          </FormControl>
 
-              <div className="report-drun-general">
-                <div className="report-key">DIRECT RUN GERAL: </div>
-                <div className="report-value">{drun.chassisGeral} %</div>
-              </div>
-            </div>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}  >
+            <DatePicker
+              className="filter-date"
+              autoOk
+              keyboard
+              clearable
+              format="dd/MM/yyyy"
+              helperText="Selecione uma data"
+              value={filter.date}
+              onChange={this.handleDateChange} />
+          </MuiPickersUtilsProvider>
 
-            {/* BUS IMPLEMENTATION
-            <div>
-              DIRECT RUN BUS:
-            </div>
+        </div>
 
-            <div>
-              DIRECT RUN BUS GERAL:
-            </div> 
-            */}
+        <div className='report-kpis'>
+          <Kpi kpi={dr} />
+          <LTSKpi result={res} />
+        </div>
+        
+        <div className='report-lts-table'>
+          <DrunLTSTable data={table} />
+        </div>
 
-            <div className="report-lts-container">
+      </Paper>
 
-              <div className="report-lts-percentage">
-                LTS DIRECT RUN {this.state.percentage} %
-              </div>
-
-              <div className="report-lts-sum">
-                <div className="report-lts-total" >TOTAL: {this.state.result.total} </div>
-                <div className="report-lts-ok"> OK: {this.state.result.ok} </div>
-              </div>
-
-            </div>
-
-          </div>
-
-          <div className='report-filters'>
-
-            <MuiPickersUtilsProvider utils={DateFnsUtils}  >
-              <DatePicker
-                autoOk
-                format="dd/MM/yyyy"
-                helperText="Selecione uma data"
-                value={this.state.filter.date}
-                onChange={this.handleDateChange} />
-            </MuiPickersUtilsProvider>
-
-          </div>
-
-          <div className='report-lts-table'>
-            <DrunLTSTable data={data} />
-          </div>
-
-        </Paper>
-      </div>
     )
   }
 }
@@ -171,5 +195,21 @@ export default class ReportContainer extends Component {
     Como buscar o stop time e produção do dia anterior
 
   -----------
+
+  STATUS
+                case 0:
+                    statusTxt = "Initial";
+                case 1:
+                    statusTxt = "Active";
+                case 2:
+                    statusTxt = "Job OK";
+                case 3:
+                    statusTxt = "Job NOK";
+                case 4:
+                    statusTxt = "ByPassed";
+                case 5:
+                    statusTxt = "Disabled";
+                case 6:
+                    statusTxt = "Error";
 
 */
