@@ -4,20 +4,24 @@ import MuiDataTable from 'mui-datatables';
 import { columns } from './columns';
 
 const options = {
-  rowsPerPage: 100,
-  selectableRows: false,
-  responsive: 'stacked'
+  rowsPerPage: 20,
+  filterType: 'textField',
+  selectableRows: false,  
+  onRowClick: (r) => {
+    let url;
+    if (r[5] <= 2) {
+      url = 'http://chassis/TorqueData/AssemblyResults?popIdFilter='
+    } else {
+      url = 'http://10.8.66.4/TDSBUS/AssemblyResults?popIdFilter='
+    }
+    window.open(url + r[0], '_blank');    
+  }
 }
 
 export default function DrunLTSTable(props) {
 
   const { data } = props;
-
-  const tdUrl = (popid) => {
-    const url = 'http://chassis/TorqueData/AssemblyResults?popIdFilter=' + popid;
-    return (<a href={url} target="_blank" rel="noopener noreferrer" > {popid} </a>);
-  }
-
+    
   let renderData;
 
   if (!data) {
@@ -25,18 +29,18 @@ export default function DrunLTSTable(props) {
   } else {
     renderData = [] && data.map(d => {
       return [
-        tdUrl(d.popid),
+        // tdUrl(d.popid),
+        d.popid,
         d.sequence,
-        d.ltQuantity,
-        d.ltOk,
         (d.ltOk / d.ltQuantity * 100).toFixed(2),
-        // d.processId,
+        d.ltQuantity,
+        d.ltOk,        
+        d.processId,
         d.shift,
         d.timestamp.slice(11, 19)
       ]
     });
   }
-
 
   return (
 
@@ -45,7 +49,6 @@ export default function DrunLTSTable(props) {
       data={renderData}
       columns={columns}
       options={options}
-
     />
 
   )

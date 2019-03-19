@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import './ReportContainer.css';
 
 const intervalTime = 60000;
+
 const defaultValues = {
   directRunGeral: 0,
   directRunChassis: 0,
@@ -25,7 +26,6 @@ const defaultValues = {
 export default class ReportContainer extends Component {
 
   state = {
-
     filter: {
       date: new Date(),
       line: 'truck'
@@ -50,8 +50,6 @@ export default class ReportContainer extends Component {
       truck: [],
       bus: []
     }
-
-
   }
 
   componentDidMount() {
@@ -159,7 +157,7 @@ export default class ReportContainer extends Component {
           <Kpi kpi={dr} />
           <LTSKpi result={res} />
         </div>
-        
+
         <div className='report-lts-table'>
           <DrunLTSTable data={table} />
         </div>

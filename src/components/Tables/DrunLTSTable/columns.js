@@ -21,7 +21,13 @@ export const columns = [
             sort: true,
         }
     },
-   
+    {
+        name: "%",
+        options: {
+            filter: false,
+            sort: true,
+        }
+    },   
     {
         name: "Quantidade",
         options: {
@@ -35,21 +41,14 @@ export const columns = [
             filter: false,
             sort: false,
         }
-    },
+    }, 
     {
-        name: "%",
+        name: "Processo",
         options: {
             filter: false,
-            sort: true,
+            sort: false,
         }
     },
-    // {
-    //     name: "Processo",
-    //     options: {
-    //         filter: false,
-    //         sort: false,
-    //     }
-    // },
     {
         name: "Turno",
         options: {
